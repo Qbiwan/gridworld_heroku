@@ -24,7 +24,7 @@ total_range = np.arange(num_rows*num_cols).reshape(num_rows,
                                                    ).astype(np.float)
 col1.subheader("Build new wall")
 col1.write("Add or delete a cell to change the wall")
-select_wall = col1.multiselect("But make sure there is at least one path back home:)",
+select_wall = col1.multiselect("But make sure there is at least one path back home",
                                list((range(1, (num_rows*num_cols)-1))),
                                initial_wall
                                )
@@ -49,7 +49,7 @@ ax.set_facecolor("black")
 col1.pyplot(f)
 col1.subheader("Change the number of training episodes")
 col1.write("Longer episodes provide better results but take more time.")
-episodes = col1.slider('Default value is good enough for most situations', 100, 300, 300)
+episodes = col1.slider('Default value is good enough for most situations', 100, 150, 300)
 
 col2.header("Initial State Value")
 maze = Maze(num_rows, num_cols)
@@ -80,6 +80,3 @@ if col2.button('Start Reinforcement Learning'):
     else:
         col2.write("You might have block every path back home. Consider redoing your wall.")
 
-del agent
-del maze
-gc.collect()
